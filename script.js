@@ -1,3 +1,4 @@
+
 function showSideBar() {
     const sideBar=document.querySelector('.sidebar')
     sideBar.style.display='flex'
@@ -7,6 +8,7 @@ function hideSideBar() {
     const sideBar=document.querySelector('.sidebar')
     sideBar.style.display='none'
 }
+
 
 const quizData = [
     {
@@ -51,16 +53,14 @@ const quizData = [
 ];
 
 let currentQuestion = 0;
-
+const totalQuestions = quizData.length;
 function loadQuestion() {
     const questionContainer = document.getElementById("question");
     const optionsContainer = document.getElementById("options");
     const totalQuestionsSpan = document.getElementById("total-questions");
 
 
-    console.log("questionContainer:", questionContainer);
-    console.log("optionsContainer:", optionsContainer);
-    console.log("totalQuestionsSpan:", totalQuestionsSpan);
+   
     // Check if required elements exist
     if (!questionContainer || !optionsContainer || !totalQuestionsSpan) {
         console.error("Required elements not found.");
@@ -77,8 +77,7 @@ function loadQuestion() {
         button.onclick = () => checkAnswer(option);
         optionsContainer.appendChild(button);
     });
-
-    totalQuestionsSpan.textContent = quizData.length;
+    totalQuestionsSpan.textContent = totalQuestions;
 }
 
 
@@ -137,18 +136,19 @@ function moveToNextQuestion() {
         finishQuiz();  // Redirect to finish-quiz.html when there are no more questions
     }
 }
-
 function finishQuiz() {
     const score = calculateScore();
-
+    const totalQuestions = quizData.length;
     // Check if the element with ID "score" exists in the current HTML
     const scoreElement = document.getElementById("score");
     if (scoreElement) {
-        scoreElement.textContent = `${score}/${quizData.length}`;
+        scoreElement.textContent = `${score}/${totalQuestions}`;
     }
+   
 
     // Redirect to the finish quiz page with the score
-    window.location.href = `finish-quiz.html?score=${score}`;
+    window.location.href = `finish-quiz.html?score=${score}&totalQuestions=${totalQuestions}`;
+
 }
 
 
@@ -189,7 +189,7 @@ function calculateScore() {
     // For simplicity, let's assume 1 point for each correct answer
     let score = 0;
     for (const question of quizData) {
-        if (question.userAnswer && question.userAnswer === question.correctAnswer) {
+        if (question.userAnswer !== null && question.userAnswer === question.correctAnswer) {
             score++;
         }
     }

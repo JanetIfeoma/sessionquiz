@@ -113,6 +113,10 @@
         sideBar.style.display='none'
     }
         document.addEventListener('DOMContentLoaded', function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const score = urlParams.get('score');
+            const totalQuestions = urlParams.get('totalQuestions');
+            
 
             const quizData = [
         {
@@ -146,10 +150,9 @@
         }
         // Add more quiz data for each question
     ];
-            const urlParams = new URLSearchParams(window.location.search);
-            const score = urlParams.get('score');
+            
     
-            document.getElementById("score").textContent = `${score}/${quizData.length}`;
+            document.getElementById("score").textContent = `${score}/${totalQuestions}`;
         });
     
         function goToHome() {
