@@ -89,27 +89,21 @@ function checkAnswer(selectedAnswer) {
     // Disable click events to prevent further clicks
     for (const div of optionsDivs) {
         div.style.pointerEvents = "none";
-        if (div.textContent === correctAnswer) {
-            div.style.backgroundColor = "#c4feb7";  // Green for correct answer
-        } else if (div.textContent === selectedAnswer) {
-            div.style.backgroundColor = "#feb8b7";  // Red for incorrect answer
+        if (div.textContent === selectedAnswer) {
+            div.classList.add("selected"); // Apply the "selected" class to the clicked answer
         }
     }
 
     // Update the userAnswer property in the quizData object
     quizData[currentQuestion].userAnswer = selectedAnswer;
 
-    // Display result message
-    if (selectedAnswer === correctAnswer) {
-        showQuizNotification("Correct!");
-    } else {
-        showQuizNotification(`Incorrect. The correct answer is ${correctAnswer}`);
+    const scoreElement = document.getElementById("score");
+    if (scoreElement) {
+        scoreElement.textContent = calculateScore();
     }
-
     // Add a slight delay before moving to the next question to allow users to see the color change
-    setTimeout(() => {
-        moveToNextQuestion();
-    }, 1000);
+    const nextButton = document.getElementById("btn2");
+    nextButton.style.display = "block";
 }
 
 
@@ -128,6 +122,9 @@ function skipQuestion() {
 }
 
 function moveToNextQuestion() {
+    const nextButton = document.getElementById("btn2");
+    nextButton.style.display = "none"; // Hide the "Next" button
+
     if (currentQuestion < quizData.length - 1) {
         currentQuestion++;
         updateProgressBar();
