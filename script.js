@@ -25,7 +25,7 @@ const quizData = [
         options: ["A. To have your personal note, edit, track and create a personal space", "B. So you don't lose the course you just bought", "C. Gain access to the curriculum", "D. So that you can reasearch on it"],
         correctAnswer: "A. To have your personal note, edit, track and create a personal space"
     },{
-        question: "Among th core phases of Product Management, which is the first?",
+        question: "Among the core phases of Product Management, which is the first?",
         options: ["A. Vision Development", "B. Introducing the Idea", "C. Design the Wireframes", "D. Product Development"],
         correctAnswer: "A. Vision Development"
     },
