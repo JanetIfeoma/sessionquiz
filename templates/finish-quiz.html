@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Quiz complete</title>
+</head>
+<body>
+    <style>
+        .main{
+            text-align: center;
+            margin:100px auto 0;
+            width: 50%;
+        }
+
+        .main h1{
+            font-size: 30px;
+        }
+        .main h2{
+            font-size: 16px;
+            color: #c5c5c5;
+        }
+        .main p{
+            font-size: 20px;
+            color: #08694A;
+            margin: 10px 20px;
+        }
+        .finish-buttons, #btn3,#btn4{
+            display: flex;
+            padding: 10px 15%;
+            align-items: center;
+            justify-content: space-evenly;
+
+        }
+        #btn3{
+        border: 2px solid rgb(238, 236, 236);
+        outline: none;
+        color: var(--main-color);
+        background-color: var(--bg-color);
+        
+        }
+        #btn4{
+            border: none;
+            outline: none;
+            color: var(--bg-color);
+            background-color: var(--main-color);
+            padding: 10px 10%;
+            min-width: 150px;
+        }
+        #score{
+            font-size: 25px;
+            color:#18191A;
+        }
+
+                
+
+        @media(max-width:800px) {
+            #btn4{
+            margin-left: 10px;
+            padding:12px;
+            }
+        }
+      
+
+    
+
+
+    </style>
+   <header>
+    <div class="left">
+    <h3>Latest</h3>
+    <p>We just launched a new course for product managers</p>
+    <p id='cta'>Find out now!</p>
+    <li onclick="showSideBar()"><a href="#"><i class="fa-solid fa-bars menu-btn"></i></a></li>
+    </div>
+    <div class="right">
+        <nav>
+            <ul class="sidebar">
+                <li onclick="hideSideBar()"><a href="#"><i class="fa-solid fa-xmark"></i></a></li>
+                <li><a href="#">Products</a></li>
+                <li><a href="#">Our blog</a></li>
+                <li><a href="#">Contact us</a></li>
+            </ul>
+            <ul>
+                <li class="hideonmobile"><a href="#">Products</a></li>
+                <li class="hideonmobile" ><a href="#">Our blog</a></li>
+                <li class="hideonmobile"><a href="#">Contact us</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+    <div class="main">
+        <h1>Congratulations</h1>
+        <h2>Category: Introduction</h2>
+        <p id="total-questions">You Answered: <span id="score"></span></p>
+        <p>Questions Correctly</p>
+        <div class="finish-buttons">
+            <button onclick="goToHome()" id="btn3">Home</button>
+            <button onclick="goBackToCourse()" id="btn4">Back to course</button>
+        </div>
+    </div>
+   
+    <script>
+    function showSideBar() {
+    const sideBar=document.querySelector('.sidebar')
+    sideBar.style.display='flex'
+    
+    }
+    function hideSideBar() {
+        const sideBar=document.querySelector('.sidebar')
+        sideBar.style.display='none'
+    }
+        document.addEventListener('DOMContentLoaded', function () {
+
+            const quizData = [
+        {
+            question: "Among th core phases of Product Management, which is the first?",
+            options: ["A. Vision Development", "B. Introducing the Idea", "C. Design the Wireframes", "D. Product Development"],
+            correctAnswer: "A. Vision Development"
+        },
+        {
+            question: "Who is the Chief Executive Officer for Daba?",
+            options: ["A. Paris", "B. Berlin", "C. London", "D. Madrid"],
+            correctAnswer: "A. Paris"
+        },
+        {
+            question: "According to the teacher, another word for 'Product Metrics' is called?",
+            options: ["A. Successs Metrics", "B. Data and Analytics", "C. KPI", "D. Objectives and Key Deliverables"],
+            correctAnswer: "A. Successs Metrics"
+        },{
+            question: "Who is the Chief Executive Officer for Daba?",
+            options: ["A. Paris", "B. Berlin", "C. London", "D. Madrid"],
+            correctAnswer: "A. Paris"
+        },
+        {
+            question: "Who is the Chief Executive Officer for Daba?",
+            options: ["A. Paris", "B. Berlin", "C. London", "D. Madrid"],
+            correctAnswer: "A. Paris"
+        },
+        {
+            question: "Who is the Chief Executive Officer for Daba?",
+            options: ["A. Paris", "B. Berlin", "C. London", "D. Madrid"],
+            correctAnswer: "A. Paris"
+        }
+        // Add more quiz data for each question
+    ];
+            const urlParams = new URLSearchParams(window.location.search);
+            const score = urlParams.get('score');
+    
+            document.getElementById("score").textContent = `${score}/${quizData.length}`;
+        });
+    
+        function goToHome() {
+            window.location.replace("index.html");
+        }
+    
+        function goBackToCourse() {
+            // Replace with the correct URL for the course page
+            window.location.replace("course.html");
+        }
+    </script>
+    
+</body>
+</body>
+</html>
