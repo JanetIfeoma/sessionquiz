@@ -1,15 +1,3 @@
-
-function showSideBar() {
-    const sideBar=document.querySelector('.sidebar')
-    sideBar.style.display='flex'
-    
-}
-function hideSideBar() {
-    const sideBar=document.querySelector('.sidebar')
-    sideBar.style.display='none'
-}
-
-
 const quizData = [
     {
         question: "What is the other name of this course?",
@@ -54,6 +42,7 @@ const quizData = [
 
 let currentQuestion = 0;
 const totalQuestions = quizData.length;
+
 function loadQuestion() {
     const questionContainer = document.getElementById("question");
     const optionsContainer = document.getElementById("options");
@@ -192,6 +181,68 @@ function calculateScore() {
     }
     return score;
 }
+function reviewAnswers() {
+    const userAnswers = quizData.map(question => question.userAnswer || null);
+    const correctAnswers = quizData.map(question => question.correctAnswer);
+
+    const queryString = `?userAnswer=${userAnswers.join("&userAnswer=")}&correctAnswer=${correctAnswers.join("&correctAnswer=")}`;
+    window.location.href = `review-answers.html${queryString}`;
+}
+document.addEventListener('DOMContentLoaded', function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    const score = urlParams.get('score');
+    const totalQuestions = urlParams.get('totalQuestions');
+    
+
+    const quizData = [
+{
+    question: "Among th core phases of Product Management, which is the first?",
+    options: ["A. Vision Development", "B. Introducing the Idea", "C. Design the Wireframes", "D. Product Development"],
+    correctAnswer: "A. Vision Development"
+},
+{
+    question: "Who is the Chief Executive Officer for Daba?",
+    options: ["A. Paris", "B. Berlin", "C. London", "D. Madrid"],
+    correctAnswer: "A. Paris"
+},
+{
+    question: "According to the teacher, another word for 'Product Metrics' is called?",
+    options: ["A. Successs Metrics", "B. Data and Analytics", "C. KPI", "D. Objectives and Key Deliverables"],
+    correctAnswer: "A. Successs Metrics"
+},{
+    question: "Who is the Chief Executive Officer for Daba?",
+    options: ["A. Paris", "B. Berlin", "C. London", "D. Madrid"],
+    correctAnswer: "A. Paris"
+},
+{
+    question: "Who is the Chief Executive Officer for Daba?",
+    options: ["A. Paris", "B. Berlin", "C. London", "D. Madrid"],
+    correctAnswer: "A. Paris"
+},
+{
+    question: "Who is the Chief Executive Officer for Daba?",
+    options: ["A. Paris", "B. Berlin", "C. London", "D. Madrid"],
+    correctAnswer: "A. Paris"
+}
+// Add more quiz data for each question
+];
+    
+
+    document.getElementById("score").textContent = `${score}/${totalQuestions}`;
+});
+
+
+
+function goToHome() {
+    window.location.replace("index.html");
+}
+function goBackToCourse() {
+    // Replace with the correct URL for the course page
+    window.location.replace("course.html");
+}
+
 // Initial load
 loadQuestion();
 updateProgressBar();
+
+
