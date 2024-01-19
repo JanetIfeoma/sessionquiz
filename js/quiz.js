@@ -43,6 +43,19 @@ const quizData = [
 let currentQuestion = 0;
 const totalQuestions = quizData.length;
 
+document.addEventListener('DOMContentLoaded', function () {
+    const questionContainer = document.getElementById("question");
+    const optionsContainer = document.getElementById("options");
+    const totalQuestionsSpan = document.getElementById("total-questions");
+
+    if (!questionContainer || !optionsContainer || !totalQuestionsSpan) {
+        console.error("Required elements not found.");
+        return;
+    }
+
+    loadQuestion();
+});
+
 function loadQuestion() {
     const questionContainer = document.getElementById("question");
     const optionsContainer = document.getElementById("options");
@@ -96,15 +109,6 @@ function checkAnswer(selectedAnswer) {
 }
 
 
-
-function moveToPreviousQuestion() {
-if (currentQuestion > 0) {
-    currentQuestion--;
-    updateProgressBar();
-    loadQuestion();
-}
-}
-
 function skipQuestion() {
     showQuizNotification("Question skipped successfully!");
     moveToNextQuestion();
@@ -126,15 +130,18 @@ function finishQuiz() {
     const score = calculateScore();
     const totalQuestions = quizData.length;
     // Check if the element with ID "score" exists in the current HTML
+
     const scoreElement = document.getElementById("score");
     if (scoreElement) {
         scoreElement.textContent = `${score}/${totalQuestions}`;
     }
-   
+
 
     // Redirect to the finish quiz page with the score
     window.location.href = `finish-quiz.html?score=${score}&totalQuestions=${totalQuestions}`;
 
+
+       
 }
 
 
@@ -143,16 +150,6 @@ function updateProgressBar() {
     const progressBar = document.getElementById("progress-bar");
     const currentQuestionSpan = document.getElementById("current-question");
     
-    
-    console.log("progressBar:", progressBar);
-    console.log("currentQuestionSpan:", currentQuestionSpan);
-
-    // Check if required elements exist
-    if (!progressBar || !currentQuestionSpan) {
-        console.error("Required elements not found.");
-        return;
-    }
-
     const progressPercentage = ((currentQuestion + 1) / quizData.length) * 100;
     progressBar.style.width = `${progressPercentage}%`;
     currentQuestionSpan.textContent = currentQuestion + 1;
@@ -168,19 +165,41 @@ function showQuizNotification(message) {
         notificationElement.style.display = "none";
     }, 3000);
 }
-
+function startQuiz() {
+    window.location.replace("index.html");
+}
 
 function calculateScore() {
-    // Implement your scoring logic here
-    // For simplicity, let's assume 1 point for each correct answer
     let score = 0;
+
     for (const question of quizData) {
-        if (question.userAnswer !== null && question.userAnswer === question.correctAnswer) {
+        if (question.userAnswer !== undefined && question.userAnswer === question.correctAnswer) {
             score++;
         }
     }
-    return score;
+
+    const percentage = (score / quizData.length) * 100;
+
+    let message;
+    if (percentage >= 50) {
+        message = "Nice one!";
+    } else {
+        message = "You can do better!";
+    }
+
+    // Update the score and message elements
+    const scoreElement = document.getElementById("score");
+    const messageElement = document.getElementById("message");
+
+    if (scoreElement && messageElement) {
+        scoreElement.textContent = `${percentage}%`;
+        messageElement.textContent = message;
+    }
+
+    return percentage;
 }
+
+
 function reviewAnswers() {
     const userAnswers = quizData.map(question => question.userAnswer || null);
     const correctAnswers = quizData.map(question => question.correctAnswer);
@@ -188,6 +207,7 @@ function reviewAnswers() {
     const queryString = `?userAnswer=${userAnswers.join("&userAnswer=")}&correctAnswer=${correctAnswers.join("&correctAnswer=")}`;
     window.location.href = `review-answers.html${queryString}`;
 }
+
 document.addEventListener('DOMContentLoaded', function () {
     const urlParams = new URLSearchParams(window.location.search);
     const score = urlParams.get('score');
@@ -228,13 +248,11 @@ document.addEventListener('DOMContentLoaded', function () {
 ];
     
 
-    document.getElementById("score").textContent = `${score}/${totalQuestions}`;
+    document.getElementById("score").textContent = `${score}%`;
 });
 
-
-
 function goToHome() {
-    window.location.replace("index.html");
+    window.location.replace("start-quiz.html");
 }
 function goBackToCourse() {
     // Replace with the correct URL for the course page

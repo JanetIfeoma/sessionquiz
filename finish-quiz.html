@@ -8,68 +8,6 @@
     <title>Quiz complete</title>
 </head>
 <body>
-    <style>
-        .main{
-            text-align: center;
-            margin:100px auto 0;
-            width: 50%;
-        }
-
-        .main h1{
-            font-size: 30px;
-        }
-        .main h2{
-            font-size: 16px;
-            color: #c5c5c5;
-        }
-        .main p{
-            font-size: 20px;
-            color: #08694A;
-            margin: 10px 20px;
-        }
-        .finish-buttons, #btn3,#btn4{
-            display: flex;
-            padding: 10px 15%;
-            align-items: center;
-            justify-content: space-evenly;
-
-        }
-        #btn3{
-        border: 2px solid rgb(238, 236, 236);
-        outline: none;
-        color: var(--main-color);
-        background-color: var(--bg-color);
-        
-        }
-        #btn4{
-            border: none;
-            outline: none;
-            color: var(--bg-color);
-            background-color: var(--main-color);
-            padding: 10px 10%;
-            min-width: 150px;
-        }
-        #score{
-            font-size: 25px;
-            color:#18191A;
-        }
-
-                
-
-        @media(max-width:800px) {
-            #btn4{
-            margin-left: 10px;
-            padding:12px;
-            
-            }
-          
-        }
-      
-
-    
-
-
-    </style>
    <header>
     <div class="left">
     <h3>Latest</h3>
@@ -94,21 +32,20 @@
     </div>
 </header>
     <div class="main">
-        <h1>Congratulations</h1>
-        <h2>Category: Introduction</h2>
-        <p id="total-questions">You Answered: <span id="score"></span></p>
-        <p>Questions Correctly</p>
+        <img src="./img/icons8-trophy-64.png" width="70px">
+        <h2 id="total-questions" >You scored <span id="score"></span>  Nice one!</h2>
+        <p>We sent you an email containing your login credentials and instructions. Cheers!</p>
+        <button onclick="goBackToCourse()" id="btn4">Cotinue class</button>
         <div class="finish-buttons">
-            <button onclick="goToHome()" id="btn3">Home</button>
-            <button onclick="goBackToCourse()" id="btn4">Back to course</button>
-            
+        <button onclick="goToHome()" id="btn3">Retry</button>
+        <button onclick="reviewAnswers()" id="review-btn" class="btnReview">See Answers</button>
         </div>
             
-        <button onclick="reviewAnswers()" id="review-btn" class="btnReview">Review Answers</button>
+        
 
-    </div><script defer src="./js/script.js"></script>
+    </div><script  src="./js/script.js"></script>
     <script defer src="./js/quiz.js"></script>
-    <script defer src="./js/review-answers.js"></script>
+ 
     
     
 </body>

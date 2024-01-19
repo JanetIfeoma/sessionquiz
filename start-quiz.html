@@ -30,22 +30,36 @@
             </nav>
         </div>
     </header>
-        <div class="quiz-container" id="quiz-container">
+        <div id="start-container">
             <div id="quiz-notification"></div>
-            <h1>Quiz</h1>
-            <div id="progress-bar-container">
-                <div id="progress-bar"></div>
+            <h1>Welcome to session Quiz</h1>
+            <div class="box1">
+                <img src="" width="30px">
+                <div id="text" >
+                    <h4>Product Management Bootcamp</h4>
+                    <p style="font-size: 10px;" >Session 1</p>
+                </div>
             </div>
-            <div id="question-counter">Question <span id="current-question">1</span> / <span id="total-questions">0</span></div>
-            <div id="question"></div>
-            <div id="options" class="options-container"></div>
-            <div class="buttons">
-                <button onclick="moveToNextQuestion()" id="btn2">Next</button>
+
+            <div class="overview">
+            <h4>Overview</h4>
+            <ul><li>12 Questions</li></ul>
+            <ul><li>2 minutes per questions</li></ul>
+            <ul><li>Score above 50% to earn a certificate</li></ul>
             </div>
-        </div>
+
+            <div class="instructions">
+            <h4>Instructions</h4>
+            <ul><li>Tap on an option to select the correct answer</li></ul>
+            <ul><li>Click 'submit'if you are sure you want to submit all quizzes</li></ul>
+            <ul><li>Once started, you have to complete all quizzes before exiting the app</li></ul>
+            <ul><li>Click on the button below to get started</li></ul>
+            </div>
+
+            <button id="start-btn" onclick="startQuiz()" >Start now</button>
         </div> 
 
-   <script src="./js/script.js"></script>
-   <script defer src="./js/quiz.js"></script>
+   <script src="js\script.js"></script>
+   <script defer src="js/quiz.js"></script>
 </body>
 </html>

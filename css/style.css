@@ -100,7 +100,6 @@ nav a:hover{
 }
 .sidebar li{
     width: 100%;
-
 }
 
 .menu-btn{
@@ -109,6 +108,73 @@ nav a:hover{
     padding-left: 20px;
     font-size: 15px;
 }
+
+
+/* start quiz */
+
+#start-container,.review-container{
+    margin-bottom: 20px;
+    align-items: center;
+    width:40%;
+    height: 90vh;
+    background-color: var(--bg-color);
+    margin: 50px auto 0;
+}
+.box1{
+    display: flex;
+    border: 2px solid rgb(238, 236, 236);
+    padding: 5px 10px;
+    margin-top: 20px;
+    align-items: center;
+    gap: 20px;
+}
+
+#start-container p{
+    font-size: 25px;
+}
+
+#start-container h4{
+    font-size: 11px;
+    padding: 10px 0 5px 0;
+
+
+}
+#start-container p{
+    font-size: 5px;
+    color: #333;
+}
+.overview{
+    padding: 30px 0;
+}
+.overview li{
+    list-style-type: disc;
+    font-weight: bold;
+    color: #333;
+    margin-left: 30px
+}
+
+.instructions{
+    padding-bottom: 25px ;
+}
+.instructions li{
+    list-style-type: disc;
+    font-weight: bold;
+    color: #333;
+    margin-left: 30px;
+}
+
+#start-container #start-btn{
+    border: none;
+    outline: none;
+    color: var(--bg-color);
+    background-color: var(--main-color);
+    cursor: pointer;
+    width: 100%;
+    font-size: 12px;
+}
+
+
+
 
 ul{
   display: flex;
@@ -137,10 +203,6 @@ a{
         text-align: center;
         display: none;
         
-    /* width: 100%;
-    height: 30px;
-    background-color:var(--text-color);
-     */
 }
 #quiz-container {
     margin-bottom: 20px;
@@ -163,7 +225,7 @@ a{
 
 #progress-bar {
     height: 100%;
-    width: 0; /* Change this valudynamically with JavaScript */
+    width: 0; 
     background-color:var(--main-color);
     border-radius: 10px;
     transition: width 0.3s; 
@@ -172,6 +234,7 @@ a{
     font-size: 18px;
     color:var(--text-color);
     margin-bottom: 20px;
+    text-align: left;
 }
 
 h2{
@@ -179,6 +242,11 @@ h2{
     margin-bottom: 12px;
 }
 
+#quiz-container h2{
+    font-size: 18px;
+    margin-bottom: 12px;
+    text-align: left;
+}
 .option{
     background-color: var(--bg-color);
     color:var(--text-color);
@@ -188,19 +256,30 @@ h2{
     margin-bottom: 15px;
     border: 1px solid rgb(232, 231, 231);
     cursor: pointer;
-    font-size: 16px;
+    font-size: 14px;
     transition: background-color 0.3s;
 }
 
 
 .option:hover {
-    background-color:var(--second-color)
+    background-color:#eeffea
 }
 .option.selected {
-    background-color: #c4feb7;
+    background-color: #eeffea;
     color: #000; 
+    border: 2px solid var(--second-bg-color);
 
-} 
+
+}
+
+.incorrect-answer{
+    background-color:red;
+}
+.correct-answer{
+    background-color: green;
+}
+
+
 .buttons {
    display: flex;
    align-items: center;
@@ -225,23 +304,95 @@ text-align: center;
     color: var(--bg-color);
     background-color: var(--main-color);
     cursor: pointer;
+   margin-left: auto;
 }
-#skip-btn,#review-btn{
+
+.main{
+    text-align: center;
+    margin:100px auto 0;
+    width: 30%;
+}
+
+
+.main h2{
+    margin-top: 15px;
+    font-size: 14px;
+    color: black;
+}
+.main p{
+    font-size: 12px;
+    color: #b4b2b2;
+    margin:0 0 30px 0;
+    text-align: center;
+}
+.finish-buttons{
+    display: flex;
+    align-items: center; 
+}
+
+
+        
+#skip-btn{
     border: 2px solid rgb(238, 236, 236);
     background-color: var(--bg-color);
     color: var(--main-color);
     
 }
+#btn4{
+    width: 100%;
+    margin-bottom: 10px;
+}
+#btn3{
+   background-color: var(--bg-color);
+   color: var(--main-color);
+   border: 2px solid rgb(238, 236, 236);
+   margin-left: 0;
+}
+#review-btn{
+    border: none;
+    outline: none;
+    color: var(--bg-color);
+    background-color: #333;
+    padding: 10px 10%;
+    min-width: 150px; /* Adjust the min-width as needed */
+    white-space: nowrap; /* Prevent text from wrapping */
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
 #btn3:hover,#btn1:hover,#skip-btn:hover,#review-btn:hover{
    background-color: rgb(232, 231, 231);
+   color: #05422e
+   ;
    transition: ease-in-out .5s;
 }
 #btn4:hover,#btn2:hover{
-    background-color: #05422e;
+    background-color: var(--text-color);
     transition: ease-in-out .4s;
 }
 
+/* Add your styling here, for example: */
+.review-question {
+    display: inline-block;
+    margin-right: 20px;
+    white-space: normal;
+    vertical-align: top;
+}
+
+.review-options {
+    margin-top: 10px;
+}
+
+.option {
+    margin-right: 10px;
+}
+.correct-answer {
+    background-color: #8FED8F; /* Light green for correct answer */
+}
+
+.user-answer {
+    background-color: #F08080; /* Light coral for user's answer */
+}
 
 
 
@@ -256,10 +407,11 @@ text-align: center;
 
 
 @media(max-width:800px) {
-    #quiz-container{
+    #quiz-container,#start-container{
         width: 90%;
         height: 100vh;
     }
+    
     header {
         flex-direction: column;
         align-items: center;
@@ -291,7 +443,23 @@ text-align: center;
     .sidebar{
         width: 100%;
         height: auto;
+        padding-left: 10px;
+
     }
+    #btn4{
+        margin-left: 10px;
+        padding:12px;
+        
+    }
+    .main{
+        width: 50%;
+        
+    }
+    .finish-buttons{
+       margin-left: 15px;
+    }
+   
+    
     .buttons {
         flex-direction: column;
         align-items: center;
@@ -299,6 +467,10 @@ text-align: center;
     .buttons button {
         width: 100%;
         margin-bottom: 10px; /* Add space between the buttons */
+    }
+    #btn2{
+        margin-left: auto;
+        width: 50%;
     }
 
 @media(max-width:400px) {
