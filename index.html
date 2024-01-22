@@ -33,13 +33,17 @@
         <div class="quiz-container" id="quiz-container">
             <div id="quiz-notification"></div>
             <h1>Quiz</h1>
+            <div style="display: flex; align-items: center; justify-content: space-between;  white-space: nowrap; padding: 20px 0 ;">
             <div id="progress-bar-container">
                 <div id="progress-bar"></div>
+                
             </div>
-            <div id="question-counter">Question <span id="current-question">1</span> / <span id="total-questions">0</span></div>
+            <div id="question-counter"> <span id="current-question">1</span> / <span id="total-questions">0</span></div>
+        </div>
             <div id="question"></div>
             <div id="options" class="options-container"></div>
             <div class="buttons">
+                <button onclick="skipQuestion()" id="btn1">Skip</button>
                 <button onclick="moveToNextQuestion()" id="btn2">Next</button>
             </div>
         </div>
