@@ -378,13 +378,17 @@ text-align: center;
 .option {
     margin-right: 10px;
 }
-.correct-answer {
-    background-color: #8FED8F; /* Light green for correct answer */
+.correct {
+    background-color: #eeffea;
+    border: 2px solid var(--second-bg-color);
 }
 
-.user-answer {
-    background-color: #F08080; /* Light coral for user's answer */
+.wrong {
+    color: grey;
+    background-color: rgb(238, 236, 236);
 }
+
+
 
 
 
@@ -399,7 +403,7 @@ text-align: center;
 
 
 @media(max-width:800px) {
-    #quiz-container,#start-container{
+    #quiz-container,#start-container,.review-container{
         width: 90%;
         height: 100vh;
     }
@@ -476,7 +480,7 @@ text-align: center;
   
     
 
-@media(max-width:400px) {
+@media(max-width:415px) {
     .sidebar{
         width:100% ;
     }
@@ -491,11 +495,11 @@ text-align: center;
     }  
 
     #btn1{
-        padding: 10px 60px;
+        padding: 10px 66px;
         
     }
     #btn2{
-        padding: 10px 60px;
+        padding: 10px 66px;
        
     }
     .finish-buttons{

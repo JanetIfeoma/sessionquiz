@@ -126,22 +126,52 @@ function moveToNextQuestion() {
         finishQuiz();  // Redirect to finish-quiz.html when there are no more questions
     }
 }
+function calculateScore() {
+    let score = 0;
+
+    for (const question of quizData) {
+        if (question.userAnswer !== undefined && question.userAnswer === question.correctAnswer) {
+            score++;
+        }
+    }
+
+    const totalQuestions = quizData.length;
+    const percentage = Math.round((score / totalQuestions) * 100);
+
+    let message;
+    if (percentage >= 50) {
+        message = "Nice one!";
+    } else {
+        message = "You can do better!";
+    }
+
+    // Log values for debugging
+    console.log("Score:", score);
+    console.log("Total Questions:", totalQuestions);
+    console.log("Percentage:", percentage);
+    console.log("Message:", message);
+
+    // Update the score, message, and percentage elements
+    const scoreElement = document.getElementById("score");
+    const messageElement = document.getElementById("message");
+
+    if (scoreElement && messageElement) {
+        scoreElement.textContent = `${score}/${totalQuestions}`;
+        messageElement.textContent = message;
+    }
+
+    return percentage;
+}
+
+
+
 function finishQuiz() {
     const score = calculateScore();
     const totalQuestions = quizData.length;
     // Check if the element with ID "score" exists in the current HTML
 
-    const scoreElement = document.getElementById("score");
-    if (scoreElement) {
-        scoreElement.textContent = `${score}/${totalQuestions}`;
-    }
-
-
-    // Redirect to the finish quiz page with the score
     window.location.href = `finish-quiz.html?score=${score}&totalQuestions=${totalQuestions}`;
-
-
-       
+    
 }
 
 
@@ -169,35 +199,8 @@ function startQuiz() {
     window.location.replace("index.html");
 }
 
-function calculateScore() {
-    let score = 0;
 
-    for (const question of quizData) {
-        if (question.userAnswer !== undefined && question.userAnswer === question.correctAnswer) {
-            score++;
-        }
-    }
 
-    const percentage = (score / quizData.length) * 100;
-
-    let message;
-    if (percentage >= 50) {
-        message = "Nice one!";
-    } else {
-        message = "You can do better!";
-    }
-
-    // Update the score and message elements
-    const scoreElement = document.getElementById("score");
-    const messageElement = document.getElementById("message");
-
-    if (scoreElement && messageElement) {
-        scoreElement.textContent = `${percentage}%`;
-        messageElement.textContent = message;
-    }
-
-    return percentage;
-}
 
 
 function reviewAnswers() {

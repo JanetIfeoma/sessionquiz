@@ -103,22 +103,32 @@
 </header>
 
 <div class="review-container">
-    <!-- <div id="quiz-notification">
-        <h2>Great job! You are ready to move on to the next lecture</h2>
-        <p>You got <span id="score"></span> out of <span id="total-questions">${userAnswers.length}</span> correct.</p>
-    </div> -->
-    <h1 style="text-align: center; margin-bottom: 20px;"> Answers</h1>
-    <div id="question-container">
-        <!-- Questions and options will be dynamically added here using JavaScript -->
+    <h1 style="text-align: center; margin-bottom: 20px;"> Quiz</h1>
+    <div style="display: flex; align-items: center; justify-content: space-between;  white-space: nowrap; padding: 20px 0 ;">
+        <div id="progress-bar-container">
+            <div id="progress-bar"></div>
+            
+        </div>
+        <div id="question-counter"> <span id="current-question">1</span> / <span id="total-questions">0</span></div>
+    </div>
+    <div id="review-question-container">
+        <div id="review-question"></div>
+        <div id="review-options" class="options-container"></div>
+            
+            <div class="buttons">
+                <button onclick="moveToNextReviewQuestion()" id="btn1">Next</button> 
+                <button onclick="goToHome()" id="btn2">Home</button>
+            </div>
     </div>
 
-    <button style="background-color: #08694A; margin-top: 50px; align-items: center;  width: 50%; color: var(--bg-color);" onclick="goToHome()" id="btn3">Home</button>
+   
 
     
 </div>
-   <script  src="./js/script.js"></script>
+   <script  src="./js/script.js"></script> 
+   <script  src="./js/review-answers.js"></script>
     <script defer src="./js/quiz.js"></script>
-    <script  src="./js/review-answers.js"></script>
+   
   
 </body>
 </html>
