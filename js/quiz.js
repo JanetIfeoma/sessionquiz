@@ -88,12 +88,17 @@ function checkAnswer(selectedAnswer) {
     const optionsContainer = document.getElementById("options");
     const optionsDivs = optionsContainer.getElementsByClassName("option");
 
-    // Disable click events to prevent further clicks
+    // Enable click events for all options
     for (const div of optionsDivs) {
-        div.style.pointerEvents = "none";
-        if (div.textContent === selectedAnswer) {
-            div.classList.add("selected"); // Apply the "selected" class to the clicked answer
-        }
+        div.style.pointerEvents = "auto";
+        div.classList.remove("selected");
+    }
+
+    // Disable click events for the selected answer to prevent changing it
+    const selectedDiv = Array.from(optionsDivs).find(div => div.textContent === selectedAnswer);
+    if (selectedDiv) {
+        selectedDiv.style.pointerEvents = "none";
+        selectedDiv.classList.add("selected");
     }
 
     // Update the userAnswer property in the quizData object
@@ -101,12 +106,14 @@ function checkAnswer(selectedAnswer) {
 
     const scoreElement = document.getElementById("score");
     if (scoreElement) {
-        scoreElement.textContent = calculateScore();
+        scoreElement.textContent = `${calculateScore()}/${quizData.length}`;
     }
-    // Add a slight delay before moving to the next question to allow users to see the color change
+
+    // Add a slight delay before showing the "Next" button to allow users to see the color change
     const nextButton = document.getElementById("btn2");
     nextButton.style.display = "block";
 }
+
 
 
 function skipQuestion() {
@@ -138,41 +145,63 @@ function calculateScore() {
     const totalQuestions = quizData.length;
     const percentage = Math.round((score / totalQuestions) * 100);
 
-    let message;
-    if (percentage >= 50) {
-        message = "Nice one!";
-    } else {
-        message = "You can do better!";
-    }
-
-    // Log values for debugging
-    console.log("Score:", score);
-    console.log("Total Questions:", totalQuestions);
-    console.log("Percentage:", percentage);
-    console.log("Message:", message);
-
-    // Update the score, message, and percentage elements
-    const scoreElement = document.getElementById("score");
-    const messageElement = document.getElementById("message");
-
-    if (scoreElement && messageElement) {
-        scoreElement.textContent = `${score}/${totalQuestions}`;
-        messageElement.textContent = message;
-    }
+    updateScoreElement(score, totalQuestions);
+    updateMessageElement(percentage);
 
     return percentage;
 }
 
-
-
 function finishQuiz() {
     const score = calculateScore();
     const totalQuestions = quizData.length;
-    // Check if the element with ID "score" exists in the current HTML
 
     window.location.href = `finish-quiz.html?score=${score}&totalQuestions=${totalQuestions}`;
-    
 }
+
+function updateScoreElement(score, totalQuestions) {
+    const scoreElement = document.getElementById("score");
+
+    if (scoreElement) {
+        scoreElement.textContent = `${score}/${totalQuestions}`;
+    }
+}
+
+function updateMessageElement(percentage) {
+    let message;
+    if (percentage < 25) {
+        message = "You can do better!";
+    } else if (percentage < 50) {
+        message = "Great effort! Keep learning and improving!";
+    } else {
+        message = "Nice one!";
+    }
+
+    createMessageElement(message);
+}
+
+function createMessageElement(message) {
+    let messageElement = document.getElementById("message");
+
+    if (!messageElement) {
+        messageElement = document.createElement("p");
+        messageElement.id = "message";
+        document.getElementById("total-questions").appendChild(messageElement);
+    }
+
+    messageElement.textContent = message;
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    const scoreElement = document.getElementById("score");
+    if (scoreElement) {
+        scoreElement.textContent = `0/${quizData.length}`;
+    }
+
+    const messageElement = document.getElementById("message");
+    if (messageElement) {
+        messageElement.textContent = "";
+    }
+});
 
 
 
