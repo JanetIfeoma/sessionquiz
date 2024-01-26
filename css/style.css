@@ -309,15 +309,48 @@ line-height: 140%;
     justify-content: center;
     align-items: flex-start;
     gap: 24px;
-}
 
+
+}
 .buttons {
     display: flex;
-    width: 452px;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 24px;
+    gap: 8px; /* Adjust the space between buttons */
+    max-width: 452px; /* Set the maximum width of the container */
 }
+
+#btn1,
+#btn2 {
+    border: 2px solid rgb(238, 236, 236);
+    outline: none;
+    cursor: pointer;
+    display: flex;
+    padding: 12px 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    font-style: normal;
+    line-height: 140%;
+    flex: 1; /* Make both buttons take equal width */
+    max-width: 50%; /* Limit the maximum width of each button to 50% */
+}
+
+#btn1 {
+    color: var(--main-color);
+    background-color: var(--bg-color);
+    font-weight: 700;
+}
+
+#btn2 {
+    color: var(--bg-color);
+    background-color: var(--main-color);
+    font-weight: 100;
+}
+
+#btn2:not(:enabled) {
+    visibility: hidden; /* Hide Next button when not enabled */
+}
+
 
 #start-btn,#btn4{
     padding: 10px 18% ;
@@ -325,41 +358,6 @@ box-sizing: border-box;
 text-align: center;
 }
 
-#btn1{
-    border: 2px solid rgb(238, 236, 236);
-    outline: none;
-    color: var(--main-color);
-    cursor: pointer;
-    background-color: var(--bg-color);
-    display: flex;
-    padding: 12px 10px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    flex: 1 0 0;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 140%;
-    
-}
-#btn2{
-    border: none;
-    outline: none;
-    color: var(--bg-color);
-    background-color: var(--main-color);
-    display: flex;
-    padding: 12px 10px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    flex: 1 0 0;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 100;
-    line-height: 140%;
-    cursor: pointer;
-}
 
 .main{
     text-align: center;
@@ -481,7 +479,7 @@ text-align: center;
 
 
 
-@media(max-width:800px) {
+@media(max-width:770px) {
     #quiz-container,#start-container,.review-container{
         width: 90%;
         height: 100vh;
@@ -537,16 +535,30 @@ text-align: center;
     }
    
     
-    .buttons {
-        align-items: center;
-    }
     #btn1{
-        padding: 10px 80px;
+        padding: 12px 10px;
+        gap: 10px;
+        flex: 1 ;
+        
         
     }
-    #btn2{
-        padding: 10px 80px;
-       
+    #btn2 {
+        padding: 12px 10px;
+        gap: 10px;
+        flex: 1 ;
+        border: none;
+        outline: none;
+        /* Shrink to zero width when not visible */
+    }
+    .buttons{
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        align-self: stretch;
+        max-width: 100%;
+    }
+    .finish-buttons{
+        width: 100%;
     }
     #btn3{
         padding: 10px 40px;
@@ -557,7 +569,7 @@ text-align: center;
      }
     
   
-    
+}    
 
 @media(max-width:415px) {
     .sidebar{
@@ -588,20 +600,22 @@ text-align: center;
     #btn1{
         padding: 12px 10px;
         gap: 10px;
-        flex: 1 0 0;
+        flex: 1 ;
+        
         
     }
-    #btn2{
+    #btn2 {
         padding: 12px 10px;
         gap: 10px;
-        flex: 1 0 0;
-       
+        flex: 1 ;
+        border: none;
+        outline: none;
+        /* Shrink to zero width when not visible */
     }
     .buttons{
         display: flex;
-        justify-content: center;
-        align-items: flex-start;
-        gap: 24px;
+        align-items: center;
+        gap: 8px;
         align-self: stretch;
         width: 100%;
     }
@@ -624,7 +638,7 @@ text-align: center;
 
 
     
-}
+
 
 
 
